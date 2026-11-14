@@ -6,7 +6,7 @@
 - AI Decision Log entry: use the Exercise 6 entry in [ai-decision-log.md](ai-decision-log.md). Read it to confirm it reflects your decisions before submitting.
 
 ## Exercise 7
-The Exercise 7 pull request contains `.agents/skills/requirements-reviewer/SKILL.md`, its metadata, the review report, and the accepted testing improvement. Use the merged Exercise 7 pull-request link supplied with this submission.
+The Exercise 7 pull request contains `.agents/skills/requirements-reviewer/SKILL.md`, its metadata, the review report, and the accepted testing improvement. Merged pull request: https://github.com/gschoen06-design/equipment-request-app/pull/2
 
 Most important finding: The feature met the specification, but the permanent suite lacked regression checks for resetting the view to High when reopened and preserving original add-request validation.
 
