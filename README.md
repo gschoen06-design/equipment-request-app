@@ -18,7 +18,7 @@ On Windows, you can also use `py equipment_request_app.py`. On macOS or Linux, u
 ## Menu
 
 - **1. Add equipment request:** Enter an equipment name, your name, and High, Medium, or Low priority. Priority input is not case-sensitive.
-- **2. View all requests:** Display every request in the order it was added.
+- **2. View requests:** Start with High priority requests. Type All, High, Medium, or Low to change the view, or Back to return to the main menu. Each view shows a matching count.
 - **3. Exit:** Close the application.
 
 Blank names and invalid menu or priority choices are checked. Requests are stored in memory and are cleared when the program closes. No extra packages or database are needed.
@@ -27,8 +27,8 @@ Blank names and invalid menu or priority choices are checked. Requests are store
 
 The program uses a list of dictionaries, functions, loops, and if/elif/else statements. `add_request` collects information, `view_requests` displays it, and `main` runs the menu.
 
-Priority filtering is intentionally not implemented. It is reserved for Exercise 6.
+Exercise 6 adds exact-priority filtering. See [the specification](docs/priority-filter-spec.md) for the rules and verification results.
 
 ## Quick manual check
 
-View requests before adding any, then add one request for each priority. View all requests and confirm each name and priority appears. Try an invalid priority and an invalid menu choice, then exit.
+Add a request for each priority. Open View requests and confirm High is shown first. Try Medium, Low, All, an invalid filter, and Back. Confirm All still contains every request. Run automated checks with `python -m unittest discover -s tests -v`.
