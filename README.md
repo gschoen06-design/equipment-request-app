@@ -32,3 +32,13 @@ Exercise 6 adds exact-priority filtering. See [the specification](docs/priority-
 ## Quick manual check
 
 Add a request for each priority. Open View requests and confirm High is shown first. Try Medium, Low, All, an invalid filter, and Back. Confirm All still contains every request. Run automated checks with `python -m unittest discover -s tests -v`.
+
+## Exercise 7: requirements review
+
+The repository-scoped skill lives in `.agents/skills/requirements-reviewer/SKILL.md`. In a Codex session opened on this repository, invoke:
+
+```text
+$requirements-reviewer Review the priority-filter feature against docs/priority-filter-spec.md. Do not change files.
+```
+
+The reviewer compares acceptance criteria with code and tests, cites evidence, reports gaps and data concerns, and does not edit files unless asked.

@@ -37,7 +37,7 @@ Gavin selected exact-priority matching and High as the initial view. For the req
 Keep add_request unchanged. Allow view_requests to display one selected priority using a separate matching list. Add a filter-menu function that initially displays High and loops until Back. Verify AC1–AC7 using standard-library unittest and a complete menu interaction.
 
 ## Verification Results
-Command: `python -m unittest discover -s tests -v` — 8 tests passed.
+Command: `python -m unittest discover -s tests -v` — 8 tests passed in Exercise 6; 11 tests passed after the accepted Exercise 7 regression-coverage improvement.
 
 | Criterion | Result | Observable check |
 | --- | --- | --- |
