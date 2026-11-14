@@ -28,18 +28,37 @@ def add_request(requests):
     print("Equipment request added successfully.")
 
 
-def view_requests(requests):
-    """Display every request in the order it was added."""
-    if len(requests) == 0:
-        print("No equipment requests have been added.")
+def view_requests(requests, priority="All"):
+    """Display matching requests without changing the original list."""
+    matching_requests = []
+    for request in requests:
+        if priority == "All" or request["priority"] == priority:
+            matching_requests.append(request)
+
+    print(f"\n{priority} Equipment Requests")
+    print(f"Matching requests: {len(matching_requests)}")
+    if len(matching_requests) == 0:
+        print(f"No requests found for {priority}.")
         return
 
-    print("\nAll Equipment Requests")
-    for number, request in enumerate(requests, start=1):
+    for number, request in enumerate(matching_requests, start=1):
         print(f"\nRequest {number}")
         print(f"Equipment: {request['equipment']}")
         print(f"Requested by: {request['requester']}")
         print(f"Priority: {request['priority']}")
+
+
+def filter_requests(requests):
+    """Start with High, then let the user select another view."""
+    view_requests(requests, "High")
+    while True:
+        choice = input("\nFilter (All, High, Medium, Low) or Back: ").strip().title()
+        if choice == "Back":
+            return
+        elif choice in ["All", "High", "Medium", "Low"]:
+            view_requests(requests, choice)
+        else:
+            print("Invalid filter. Enter All, High, Medium, Low, or Back.")
 
 
 def main():
@@ -49,7 +68,7 @@ def main():
     while True:
         print("\nEquipment Request Application")
         print("1. Add equipment request")
-        print("2. View all requests")
+        print("2. View requests")
         print("3. Exit")
 
         choice = input("Choose an option (1-3): ").strip()
@@ -57,7 +76,7 @@ def main():
         if choice == "1":
             add_request(requests)
         elif choice == "2":
-            view_requests(requests)
+            filter_requests(requests)
         elif choice == "3":
             print("Goodbye!")
             break
