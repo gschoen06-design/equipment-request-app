@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirements Reviewer"
+  short_description: "Check feature code against its acceptance criteria"
+  default_prompt: "Use $requirements-reviewer to review the priority-filter feature against docs/priority-filter-spec.md. Do not change files."

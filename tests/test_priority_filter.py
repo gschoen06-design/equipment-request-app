@@ -84,6 +84,31 @@ class PriorityFilterTests(unittest.TestCase):
         self.assertEqual(output.count("Equipment Request Application"), 3)
         self.assertIn("Goodbye!", output)
 
+    def test_reopening_view_resets_to_high(self):
+        output = self.capture(app.filter_requests, self.requests, inputs=["Low", "Back"])
+        self.assertIn("Low Equipment Requests", output)
+        reopened = self.capture(app.filter_requests, self.requests, inputs=["Back"])
+        self.assertIn("High Equipment Requests", reopened)
+        self.assertNotIn("Low Equipment Requests", reopened)
+
+    def test_add_rejects_blank_names(self):
+        for inputs, message in [(["   "], "Equipment name cannot be blank."),
+                                (["Laptop", "   "], "Your name cannot be blank.")]:
+            with self.subTest(inputs=inputs):
+                requests = copy.deepcopy(self.requests)
+                output = self.capture(app.add_request, requests, inputs=inputs)
+                self.assertIn(message, output)
+                self.assertEqual(requests, self.requests)
+
+    def test_add_retries_invalid_priority(self):
+        requests = []
+        output = self.capture(app.add_request, requests,
+                              inputs=["Laptop", "Gavin", "urgent", " medium "])
+        self.assertIn("Please enter High, Medium, or Low.", output)
+        self.assertEqual(requests, [
+            {"equipment": "Laptop", "requester": "Gavin", "priority": "Medium"}
+        ])
+
 
 if __name__ == "__main__":
     unittest.main()
